@@ -4,7 +4,7 @@ export module Util {
   export function handler(
     lambda: (evt: APIGatewayProxyEvent, context: Context) => Promise<string>
   ) {
-    return async function(event: APIGatewayProxyEvent, context: Context) {
+    return async function (event: APIGatewayProxyEvent, context: Context) {
       let body: string, statusCode: number;
 
       try {
@@ -22,6 +22,10 @@ export module Util {
       return {
         body,
         statusCode,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        }
       };
     };
   }
