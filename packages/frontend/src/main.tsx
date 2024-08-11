@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
-import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Amplify } from "aws-amplify";
 import config from "./config.ts";
+import './index.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 Amplify.configure({
   Auth: {
