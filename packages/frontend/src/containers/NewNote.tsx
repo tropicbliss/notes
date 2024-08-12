@@ -1,14 +1,12 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
-import { useNavigate } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./NewNote.css";
 
 export default function NewNote() {
     const file = useRef<null | File>(null);
-    const nav = useNavigate();
     const [content, setContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
