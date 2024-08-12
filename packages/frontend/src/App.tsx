@@ -1,4 +1,3 @@
-import './App.css'
 import { Nav, Navbar } from 'react-bootstrap';
 import Routes from "./Routes.tsx";
 import { LinkContainer } from "react-router-bootstrap";
