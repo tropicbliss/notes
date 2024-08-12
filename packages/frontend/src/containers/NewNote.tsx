@@ -5,10 +5,6 @@ import { useNavigate } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./NewNote.css";
-import { onError } from "../lib/errorLib";
-import { API } from "aws-amplify";
-import { NoteType } from "../types/note";
-import { s3Upload } from "../lib/awsLib";
 
 export default function NewNote() {
     const file = useRef<null | File>(null);
@@ -25,12 +21,6 @@ export default function NewNote() {
         file.current = event.currentTarget.files[0];
     }
 
-    function createNote(note: NoteType) {
-        return API.post("notes", "/notes", {
-            body: note,
-        });
-    }
-
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
@@ -43,18 +33,6 @@ export default function NewNote() {
         }
 
         setIsLoading(true);
-
-        try {
-            const attachment = file.current
-                ? await s3Upload(file.current)
-                : undefined;
-
-            await createNote({ content, attachment });
-            nav("/");
-        } catch (e) {
-            onError(e);
-            setIsLoading(false);
-        }
     }
 
     return (
